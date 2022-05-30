@@ -1,11 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:mms/configs/themes/app_colors.dart';
-import 'package:mms/models/market.dart';
+import '../../configs/themes/app_colors.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import '../../configs/app_config.dart';
 import '../../helpers/householdBusiness_helper.dart';
 import '../../models/householdBusiness.dart';
 import '../../provider/householdBusiness_provider.dart';

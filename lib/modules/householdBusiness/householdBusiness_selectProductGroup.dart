@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:mms/helpers/productGroup_helper.dart';
-import 'package:mms/models/productGroup.dart';
-import 'package:mms/provider/productGroup_provider.dart';
+import '../../helpers/productGroup_helper.dart';
+import '../../models/productGroup.dart';
+import '../../provider/productGroup_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:page_transition/page_transition.dart';
 import 'householdBusinessList.dart';

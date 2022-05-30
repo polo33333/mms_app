@@ -6,7 +6,6 @@ import '../models/GenneralInfo.dart';
 import '../models/httpresponse.dart';
 import '../models/market.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../models/marketDetail.dart';
 
 class APIHelper {
@@ -14,8 +13,8 @@ class APIHelper {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String token = prefs.getString(AppConfig.FCM_token) ?? null;
-
-      String url = AppConfig.marketGetAll +"?token=" + token;
+      String _apiHost = await AppConfig.choseApiHost();
+      String url = _apiHost + AppConfig.marketGetAll +"?token=" + token;
       var response = await get(url);
 
       if (response.statusCode == 200) {
@@ -71,7 +70,9 @@ class APIHelper {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String token = prefs.getString(AppConfig.FCM_token) ?? null;
-      String url = AppConfig.marketGetById + marketId.toString() +"?token=" + token;
+      String _apiHost = await AppConfig.choseApiHost();
+
+      String url = _apiHost + AppConfig.marketGetById + marketId.toString() +"?token=" + token;
       var response = await get(url);
 
       if (response.statusCode == 200) {
@@ -125,7 +126,9 @@ class APIHelper {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String token = prefs.getString(AppConfig.FCM_token)??null;
-      String url = AppConfig.URL_GETGENNERALINFO+  "?token=" + token;
+      String _apiHost = await AppConfig.choseApiHost();
+      String url = _apiHost + AppConfig.URL_GETGENNERALINFO+  "?token=" + token;
+
       var response = await get(url);
       if (response.statusCode == 200) {
         var body = jsonDecode(response.body);
@@ -167,4 +170,18 @@ class APIHelper {
     }
 
   }
+
+  static Future setDistrict(int id) async {
+
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setInt(AppConfig.districtId, id);
+      return true;
+    } catch (e) {
+      print(e);
+      return false;
+    }
+
+  }
+
 }

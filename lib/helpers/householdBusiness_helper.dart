@@ -11,7 +11,9 @@ class HouseholdBusinessHelper {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String token = prefs.getString(AppConfig.FCM_token) ?? null;
-      String url = AppConfig.householdBusinessGetall +"?token=" + token;
+      String _apiHost = await AppConfig.choseApiHost();
+      String url = _apiHost + AppConfig.householdBusinessGetall +"?token=" + token;
+
       var response = await get(url);
 
       if (response.statusCode == 200) {
@@ -66,7 +68,9 @@ class HouseholdBusinessHelper {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String token = prefs.getString(AppConfig.FCM_token) ?? null;
-      String url = AppConfig.getByRegionIdAndMarketId + regionId.toString() + '/'+ marketId.toString() +"?token=" + token;
+      String _apiHost = await AppConfig.choseApiHost();
+      String url = _apiHost + AppConfig.getByRegionIdAndMarketId + regionId.toString() + '/'+ marketId.toString() +"?token=" + token;
+
       var response = await get(url);
 
       if (response.statusCode == 200) {

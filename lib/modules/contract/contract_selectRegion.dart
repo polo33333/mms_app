@@ -1,9 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:mms/configs/app_config.dart';
-import 'package:mms/configs/themes/app_colors.dart';
-import 'package:mms/modules/contract/contractDetail_1.dart';
+import '../../modules/contract/contractDetail_1.dart';
 import 'package:provider/provider.dart';
 import 'package:page_transition/page_transition.dart';
 import '../../helpers/region_helper.dart';

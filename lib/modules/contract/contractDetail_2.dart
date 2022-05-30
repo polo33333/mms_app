@@ -1,13 +1,11 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:mms/configs/themes/app_colors.dart';
+import '../../configs/themes/app_colors.dart';
 import 'package:provider/provider.dart';
-import '../../configs/app_config.dart';
 import '../../helpers/contracthelper.dart';
 import '../../models/contract_2.dart';
 import '../../provider/contract_2_provider.dart';
-import '../../provider/contract_provider.dart';
 import 'package:intl/intl.dart';
 
 class ContractDetail_2Screen extends StatefulWidget {

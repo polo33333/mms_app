@@ -12,7 +12,9 @@ class ContractHelper {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String token = prefs.getString(AppConfig.FCM_token) ?? null;
-      String url = AppConfig.kiotForRentGetAll +"?token=" + token;
+      String _apiHost = await AppConfig.choseApiHost();
+      String url = _apiHost + AppConfig.kiotForRentGetAll +"?token=" + token;
+
       var response = await get(url);
 
       if (response.statusCode == 200) {
@@ -68,7 +70,8 @@ class ContractHelper {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String token = prefs.getString(AppConfig.FCM_token) ?? null;
-      String url = AppConfig.kiotForRentGetByMarketId + marketId.toString() +"?token=" + token;
+      String _apiHost = await AppConfig.choseApiHost();
+      String url = _apiHost + AppConfig.kiotForRentGetByMarketId + marketId.toString() +"?token=" + token;
       var response = await get(url);
 
       if (response.statusCode == 200) {
@@ -124,7 +127,9 @@ class ContractHelper {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String token = prefs.getString(AppConfig.FCM_token) ?? null;
-      String url = AppConfig.kiotForRentGetByRegionId + regionId.toString() +"?token=" + token;
+      String _apiHost = await AppConfig.choseApiHost();
+      String url = _apiHost + AppConfig.kiotForRentGetByRegionId + regionId.toString() +"?token=" + token;
+
       var response = await get(url);
 
       if (response.statusCode == 200) {
@@ -180,7 +185,9 @@ class ContractHelper {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String token = prefs.getString(AppConfig.FCM_token) ?? null;
-      String url = AppConfig.contractGetByMarketId + marketId.toString() +"?token=" + token;
+      String _apiHost = await AppConfig.choseApiHost();
+      String url = _apiHost + AppConfig.contractGetByMarketId + marketId.toString() +"?token=" + token;
+
       var response = await get(url);
 
       if (response.statusCode == 200) {

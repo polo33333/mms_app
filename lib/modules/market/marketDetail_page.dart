@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mms/configs/themes/app_colors.dart';
+import '../../configs/themes/app_colors.dart';
 import 'package:provider/provider.dart';
-import '../../configs/app_config.dart';
 import '../../helpers/apihelper.dart';
 import '../../provider/marketDetail_provider.dart';
 import 'package:intl/intl.dart';

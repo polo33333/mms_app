@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mms/configs/themes/app_colors.dart';
+import '../../configs/themes/app_colors.dart';
 
 class AccountPage extends StatefulWidget {
   @override

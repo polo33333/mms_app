@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class RoundedInput extends StatelessWidget {
   const RoundedInput({Key key, @required this.size}) : super(key: key);
   final Size size;

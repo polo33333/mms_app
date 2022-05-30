@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:mms/configs/themes/app_colors.dart';
-import 'package:mms/helpers/apihelper.dart';
-import 'package:mms/provider/genneralInfo_provider.dart';
+import '../configs/themes/app_colors.dart';
+import '../helpers/apihelper.dart';
+import '../provider/genneralInfo_provider.dart';
 import '../widgets/colorLoader.dart';
 
 import '../helpers/Auth_helper.dart';
@@ -62,7 +62,7 @@ class _SplashScreenState extends State<SplashScreen> {
         } else
           Timer(Duration(seconds: 2), () {
             Navigator.of(context).pushNamedAndRemoveUntil(
-                '/login', (Route<dynamic> route) => false);
+                '/onboarding', (Route<dynamic> route) => false);
           });
       });
     });

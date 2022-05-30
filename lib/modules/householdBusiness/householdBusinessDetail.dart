@@ -1,8 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:mms/configs/themes/app_colors.dart';
-import 'package:mms/models/market.dart';
+import '../../configs/themes/app_colors.dart';
 import 'package:intl/intl.dart';
 
 class HouseholdBusinessDetailPage extends StatefulWidget {

@@ -1,8 +1,4 @@
-import 'dart:collection';
-
 import 'package:flutter/foundation.dart';
-
-import '../models/contract.dart';
 import '../models/contract_2.dart';
 
 class Contract_2_Provider extends ChangeNotifier {

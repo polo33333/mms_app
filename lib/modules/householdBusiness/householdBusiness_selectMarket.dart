@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mms/configs/app_config.dart';
-import 'package:mms/configs/themes/app_colors.dart';
-import 'package:mms/helpers/apihelper.dart';
-import 'package:mms/helpers/contracthelper.dart';
-import 'package:mms/models/market.dart';
-import 'package:mms/provider/contract_provider.dart';
-import 'package:mms/provider/market_provider.dart';
+import '../../configs/themes/app_colors.dart';
+import '../../helpers/apihelper.dart';
+import '../../models/market.dart';
+import '../../provider/market_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -37,7 +34,6 @@ class _HouseholdBusinessSelectMarketScreenState
 
   _getMarket({bool refresh = true}) async {
     var provider = Provider.of<MarketProvider>(context, listen: false);
-    print(provider.shouldRefresh);
     if (!provider.shouldRefresh) {
       _showSnackbar('That\'s it for now!');
       return;

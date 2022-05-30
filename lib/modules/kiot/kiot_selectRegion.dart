@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:mms/modules/kiot/kiotList.dart';
+import '../../modules/kiot/kiotList.dart';
 import 'package:provider/provider.dart';
 import 'package:page_transition/page_transition.dart';
 import '../../helpers/region_helper.dart';
@@ -45,7 +45,6 @@ class _KiotSelectRegionScreenState extends State<KiotSelectRegionScreen> {
   @override
   void initState() {
     super.initState();
-    print(widget.marketId);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _getRegion(refresh: false);
     });

@@ -1,6 +1,4 @@
 import 'package:flutter/foundation.dart';
-
-import '../models/market.dart';
 import '../models/marketDetail.dart';
 
 class MarketDetailProvider extends ChangeNotifier {

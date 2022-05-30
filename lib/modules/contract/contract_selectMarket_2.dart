@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:mms/configs/app_config.dart';
-import 'package:mms/configs/themes/app_colors.dart';
-import 'package:mms/helpers/apihelper.dart';
-import 'package:mms/models/market.dart';
-import 'package:mms/modules/contract/contractDetail_2.dart';
-import 'package:mms/provider/market_provider.dart';
+import '../../configs/themes/app_colors.dart';
+import '../../helpers/apihelper.dart';
+import '../../models/market.dart';
+import '../../modules/contract/contractDetail_2.dart';
+import '../../provider/market_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:page_transition/page_transition.dart';
 

@@ -1,21 +1,22 @@
 
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mms/modules/home_page.dart';
-import 'package:mms/provider/contract_provider.dart';
-import 'package:mms/provider/genneralInfo_provider.dart';
-import 'package:mms/provider/householdBusiness_provider.dart';
-import 'package:mms/provider/marketDetail_provider.dart';
-import 'package:mms/provider/productGroup_provider.dart';
-import 'package:mms/provider/region_provider.dart';
+import 'modules/auth/onboarding_page.dart';
+import 'modules/home_page.dart';
+import 'provider/contract_provider.dart';
+import 'provider/genneralInfo_provider.dart';
+import 'provider/householdBusiness_provider.dart';
+import 'provider/marketDetail_provider.dart';
+import 'provider/productGroup_provider.dart';
+import 'provider/region_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:mms/provider/market_provider.dart';
+import 'provider/market_provider.dart';
 import 'modules/auth/login_page.dart';
 import 'configs/themes/app_colors.dart';
 import 'modules/notification_page.dart';
 import 'modules/setting_page.dart';
 import 'modules/splashScreen_page.dart';
+import 'modules/auth/selectDistrict_page.dart';
 import 'provider/contract_2_provider.dart';
 import 'provider/kiot_provider.dart';
 
@@ -46,18 +47,14 @@ void main() {
         ChangeNotifierProvider(create: (_) => Contract_2_Provider()),
         ChangeNotifierProvider(create: (_) => GenneralInfoProvider()),
 
-
       ],
       child: MyApp(),
     ),
   );
-  // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-  //   statusBarColor: Colors.transparent,
-  // ));
-  // WidgetsFlutterBinding.ensureInitialized();
-  // SystemChrome.setEnabledSystemUIOverlays([
-  //   SystemUiOverlay.bottom, //This line is used for showing the bottom bar
-  // ]);
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Colors.transparent
   ));
@@ -68,7 +65,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'MMS',
+      title: 'Quản lý chợ - Kinh tế',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'SourceSansPro',
@@ -82,6 +79,8 @@ class MyApp extends StatelessWidget {
         // "/account": (BuildContext context) => AccountPage(),
         // "/changePassword": (BuildContext context) => ChangePasswordPage(),
         "/login": (BuildContext context) => LoginPage(),
+        "/onboarding": (BuildContext context) => OnBoardingPage(),
+        "/selectdistrict": (BuildContext context) => SelectDistrictPage(),
       },
       home: SplashScreen(),
     );

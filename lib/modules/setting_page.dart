@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:mms/configs/themes/app_colors.dart';
+import '../configs/themes/app_colors.dart';
 import 'package:page_transition/page_transition.dart';
 
 import '../helpers/Auth_helper.dart';
@@ -309,7 +309,7 @@ class _SettingState extends State<SettingPage> {
             _auth.signOut().then((result) {
               if (result)
                 Navigator.of(context).pushNamedAndRemoveUntil(
-                    '/login', (Route<dynamic> route) => false);
+                    '/onboarding', (Route<dynamic> route) => false);
               setState(() {
                 //someVal = result;
               });
@@ -323,8 +323,10 @@ class _SettingState extends State<SettingPage> {
         context: context,
         builder: (BuildContext ctx) {
           return AlertDialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10.0))),
             title: Text('Đăng xuất',
-                style: TextStyle(fontWeight: FontWeight.bold)),
+                style: TextStyle(fontWeight: FontWeight.w500)),
             content: const Text('Bạn có muốn đăng xuất tài khoản?'),
             actions: [
               TextButton(
@@ -339,7 +341,7 @@ class _SettingState extends State<SettingPage> {
                     _auth.signOut().then((result) {
                       if (result)
                         Navigator.of(context).pushNamedAndRemoveUntil(
-                            '/login', (Route<dynamic> route) => false);
+                            '/onboarding', (Route<dynamic> route) => false);
                       setState(() {
                         //someVal = result;
                       });

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mms/configs/themes/app_colors.dart';
-import 'package:mms/modules/contract/contract_selectMarket_1.dart';
-import 'package:mms/modules/contract/contract_selectMarket_2.dart';
+import '../../configs/themes/app_colors.dart';
+import '../../modules/contract/contract_selectMarket_1.dart';
+import '../../modules/contract/contract_selectMarket_2.dart';
 import 'package:page_transition/page_transition.dart';
 
 class ContractSelectTypeScreen extends StatefulWidget {
@@ -38,7 +38,7 @@ class _ContractSelectTypeScreenState extends State<ContractSelectTypeScreen> {
         body: SingleChildScrollView(
             child: Column(children: <Widget>[
               SizedBox(
-                height: 20,
+                height: 15,
               ),
           Card(
               elevation: 3.0,

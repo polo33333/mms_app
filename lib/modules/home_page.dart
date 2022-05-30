@@ -104,10 +104,11 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Row(children: [
                 Container(
                   child: Container(
-                    width: 60,
-                    height: 60,
+                    width: 40,
+                    height: 40,
                     color: Colors.transparent,
-                    child: Image.asset('assets/images/img.png'),
+                    child: Image.asset('assets/images/ic_launcher.png',
+                      color: Colors.white),
                   ),
                   // CircleAvatar(
                   //   backgroundColor: Colors.blueAccent,
@@ -353,13 +354,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 Icons.home,
                 size: 30,
               ),
-              title: Text(
-                "Trang chủ",
-                style: TextStyle(
-                  //fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              label: "Trang chủ",
+              // title: Text(
+              //   "Trang chủ",
+              //   style: TextStyle(
+              //     //fontSize: 18,
+              //     fontWeight: FontWeight.bold,
+              //   ),
+              // ),
             ),
             // BottomNavigationBarItem(
             //   icon: Icon(Icons.notifications,size: 30),
@@ -367,13 +369,14 @@ class _HomeScreenState extends State<HomeScreen> {
             // ),
             BottomNavigationBarItem(
               icon: Icon(Icons.settings, size: 30),
-              title: Text(
-                "Cài đặt",
-                style: TextStyle(
-                  //fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              label: "Cài đặt",
+              // title: Text(
+              //   "Cài đặt",
+              //   style: TextStyle(
+              //     //fontSize: 18,
+              //     fontWeight: FontWeight.bold,
+              //   ),
+              // ),
             )
           ],
           currentIndex: _selectedIndex,
