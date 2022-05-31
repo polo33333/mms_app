@@ -40,7 +40,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               width: 280,
             ),
             Spacer(),
-            Text('Quản lý chợ - Kinh tế',
+            Text('Quản lý chợ - Phòng Kinh Tế',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -52,7 +52,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             Container(
               padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
               child: Text(
-                  "Hỗ trợ quản lý - tra cứu thông tin tổng quát của chợ, hợp đồng, điểm kinh doanh, thương nhân...",
+                  "Quản lý và tra cứu thông tin chung của chợ, điểm kinh doanh, thương nhân, hợp đồng thương nhân, hợp đồng thầu chợ.",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     height: 2,
