@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import '../../models/kiotDetail.dart';
+import '../../helpers/kiot_helper.dart';
+import 'package:provider/provider.dart';
 import '../../configs/themes/app_colors.dart';
 import 'package:intl/intl.dart';
+
+import '../../provider/kiotDetail_provider.dart';
 
 class KiotDetailPage extends StatefulWidget {
   var kiot;
@@ -11,6 +16,37 @@ class KiotDetailPage extends StatefulWidget {
 }
 
 class _KiotDetailPageState extends State<KiotDetailPage> {
+  _getDetail({bool refresh = true}) async {
+    var provider = Provider.of<KiotDetailProvider>(context, listen: false);
+    var postsResponse = await KiotHelper.getDetailById(widget.kiot.kiotID);
+    provider.setIsProcessing(true);
+    if (postsResponse.isSuccessful) {
+      if (postsResponse.data.isNotEmpty || postsResponse.data.length == 0) {
+        if (refresh) {
+          provider.mergeList(postsResponse.data, notify: false);
+        } else {
+          provider.setList(postsResponse.data, notify: false);
+        }
+      } else {
+        provider.setIsProcessing(true);
+        // provider.setShouldRefresh(false);
+      }
+    } else {
+      //_showSnackbar(postsResponse.message);
+    }
+    await Future.delayed(Duration(seconds: 1));
+    provider.setIsProcessing(false);
+    // _hideSnackbar();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _getDetail(refresh: false);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final f = new DateFormat('dd-MM-yyyy');
@@ -248,73 +284,111 @@ class _KiotDetailPageState extends State<KiotDetailPage> {
                 ),
               ),
             ),
-            Card(
-                elevation: 8.0,
-                shape: RoundedRectangleBorder(
-                    side: BorderSide(color: Colors.grey, width: 1),
-                    borderRadius: BorderRadius.all(Radius.circular(5))),
-                margin:
-                    new EdgeInsets.symmetric(horizontal: 15.0, vertical: 2.0),
-                child: Container(
-                    decoration: BoxDecoration(color: Colors.white),
-                    child: ListTile(
-                        contentPadding: EdgeInsets.symmetric(
-                            horizontal: 20.0, vertical: 10.0),
-                        subtitle: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              LineData(
-                                  title: "Họ và tên: ",
-                                  value: widget.kiot.nKDFullName == null
-                                      ? ""
-                                      : widget.kiot.nKDFullName),
-                              SizedBox(
-                                width: double.infinity,
-                                height: 5,
-                              ),
-                              LineData(
-                                  title: "CMND/CCCD: ",
-                                  value: widget.kiot.nKDIDNo == null
-                                      ? ""
-                                      : widget.kiot.nKDIDNo.toString()),
-                              SizedBox(
-                                width: double.infinity,
-                                height: 5,
-                              ),
-                              LineData(
-                                  title: "Điện thoại: ",
-                                  value: widget.kiot.nKDPhone == null
-                                      ? ""
-                                      : widget.kiot.nKDPhone),
-                              SizedBox(
-                                width: double.infinity,
-                                height: 5,
-                              ),
-                              LineData(
-                                  title: "Địa chỉ: ",
-                                  value: widget.kiot.nKDAddress == null
-                                      ? ""
-                                      : widget.kiot.nKDAddress),
-                              SizedBox(
-                                width: double.infinity,
-                                height: 5,
-                              ),
-                              LineData(
-                                  title: "Mã số thuế: ",
-                                  value: widget.kiot.nKDTaxCode == null
-                                      ? ""
-                                      : widget.kiot.nKDTaxCode),
-                              SizedBox(
-                                width: double.infinity,
-                                height: 5,
-                              ),
-                              LineData(
-                                  title: "Số GCN ĐKKD: ",
-                                  value: widget.kiot.nKDLicenseNo == null
-                                      ? ""
-                                      : widget.kiot.nKDLicenseNo),
-                            ])))),
+            Consumer<KiotDetailProvider>(
+              builder: (_, provider, __) => provider.isProcessing
+                  ? Container()
+                  : provider.kiotDetailListLength > 0
+                      ? SingleChildScrollView(
+                          padding: const EdgeInsets.all(5),
+                          child: Column(children: [
+                            ListView.builder(
+                              shrinkWrap: true,
+                              physics: BouncingScrollPhysics(),
+                              scrollDirection: Axis.vertical,
+                              itemBuilder: (_, index) {
+                                KiotDetail post = provider.getByIndex(index);
+                                return Card(
+                                    elevation: 8.0,
+                                    shape: RoundedRectangleBorder(
+                                        side: BorderSide(
+                                            color: Colors.grey, width: 1),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5))),
+                                    margin: new EdgeInsets.symmetric(
+                                        horizontal: 15.0, vertical: 2.0),
+                                    child: Container(
+                                        decoration:
+                                            BoxDecoration(color: Colors.white),
+                                        child: ListTile(
+                                            contentPadding:
+                                                EdgeInsets.symmetric(
+                                                    horizontal: 20.0,
+                                                    vertical: 10.0),
+                                            subtitle: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: <Widget>[
+                                                  LineData(
+                                                      title: "Họ và tên: ",
+                                                      value: post.nKDFullName ==
+                                                              null
+                                                          ? ""
+                                                          : post.nKDFullName
+                                                              .toString()),
+                                                  SizedBox(
+                                                    width: double.infinity,
+                                                    height: 5,
+                                                  ),
+                                                  LineData(
+                                                      title: "CMND/CCCD: ",
+                                                      value:
+                                                          post.nKDIDNo == null
+                                                              ? ""
+                                                              : post.nKDIDNo
+                                                                  .toString()),
+                                                  SizedBox(
+                                                    width: double.infinity,
+                                                    height: 5,
+                                                  ),
+                                                  LineData(
+                                                      title: "Điện thoại: ",
+                                                      value:
+                                                          post.nKDPhone == null
+                                                              ? ""
+                                                              : post.nKDPhone),
+                                                  SizedBox(
+                                                    width: double.infinity,
+                                                    height: 5,
+                                                  ),
+                                                  LineData(
+                                                      title: "Địa chỉ: ",
+                                                      value: post.nKDAddress ==
+                                                              null
+                                                          ? ""
+                                                          : post.nKDAddress
+                                                              .toString()),
+                                                  SizedBox(
+                                                    width: double.infinity,
+                                                    height: 5,
+                                                  ),
+                                                  LineData(
+                                                      title: "Mã số thuế: ",
+                                                      value: post.nKDTaxCode ==
+                                                              null
+                                                          ? ""
+                                                          : post.nKDTaxCode
+                                                              .toString()),
+                                                  SizedBox(
+                                                    width: double.infinity,
+                                                    height: 5,
+                                                  ),
+                                                  LineData(
+                                                      title: "Số GCN ĐKKD: ",
+                                                      value:
+                                                          post.nKDLicenseNo ==
+                                                                  null
+                                                              ? ""
+                                                              : post
+                                                                  .nKDLicenseNo
+                                                                  .toString()),
+                                                ]))));
+                              },
+                              itemCount: provider.kiotDetailListLength,
+                            )
+                          ]))
+                      : Container(),
+            ),
             SizedBox(
               width: double.infinity,
               height: 5,

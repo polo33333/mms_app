@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart';
+import '../models/kiotDetail.dart';
 import '../configs/app_config.dart';
 import '../models/httpresponse.dart';
 import '../models/kiot.dart';
@@ -70,7 +71,6 @@ class KiotHelper {
       String token = prefs.getString(AppConfig.FCM_token) ?? null;
       String _apiHost = await AppConfig.choseApiHost();
       String url = _apiHost + AppConfig.kiotGetByRegionId + regionId.toString() +"?token=" + token;
-
       var response = await get(url);
       if (response.statusCode == 200) {
         var body = jsonDecode(response.body);
@@ -113,6 +113,62 @@ class KiotHelper {
       print('UNEXPECTED ERROR');
       print(e.toString());
       return HTTPResponse<List<Kiot>>(
+        false,
+        null,
+        message: 'Something went wrong! Please try again in a moment!',
+      );
+    }
+  }
+
+
+  static Future<HTTPResponse<List<KiotDetail>>> getDetailById (int id) async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String token = prefs.getString(AppConfig.FCM_token) ?? null;
+      String _apiHost = await AppConfig.choseApiHost();
+      String url = _apiHost + AppConfig.kiotGetDetailById + id.toString() +"?token=" + token;
+      var response = await get(url);
+      if (response.statusCode == 200) {
+        var body = jsonDecode(response.body);
+        List<KiotDetail> kiot = [];
+        body.forEach((e) {
+          KiotDetail co = KiotDetail.fromJson(e);
+          kiot.add(co);
+        });
+        return HTTPResponse<List<KiotDetail>>(
+          true,
+          kiot,
+          message: 'Request Successful',
+          statusCode: response.statusCode,
+        );
+      } else {
+        return HTTPResponse<List<KiotDetail>>(
+          false,
+          null,
+          message:
+          'Invalid data received from the server! Please try again in a moment.',
+          statusCode: response.statusCode,
+        );
+      }
+    } on SocketException {
+      print('SOCKET EXCEPTION OCCURRED');
+      return HTTPResponse<List<KiotDetail>>(
+        false,
+        null,
+        message: 'Unable to reach the internet! Please try again in a moment.',
+      );
+    } on FormatException {
+      print('JSON FORMAT EXCEPTION OCCURRED');
+      return HTTPResponse<List<KiotDetail>>(
+        false,
+        null,
+        message:
+        'Invalid data received from the server! Please try again in a moment.',
+      );
+    } catch (e) {
+      print('UNEXPECTED ERROR');
+      print(e.toString());
+      return HTTPResponse<List<KiotDetail>>(
         false,
         null,
         message: 'Something went wrong! Please try again in a moment!',

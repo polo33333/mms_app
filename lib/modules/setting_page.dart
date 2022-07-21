@@ -279,7 +279,7 @@ class _SettingState extends State<SettingPage> {
               padding: EdgeInsets.all(30.0),
               alignment: Alignment.bottomCenter,
               child: Text(
-                'Version: v1.0',
+                'Version: v1.0.3',
                 style: TextStyle(
                     color: Colors.black12.withOpacity(.5), fontSize: 14.0),
               ),

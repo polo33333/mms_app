@@ -16,6 +16,7 @@ class AppConfig {
   static final householdBusinessGetall =  '/householdBusiness/getAll';
   static final getByRegionIdAndMarketId = '/householdBusiness/GetByRegionIdAndMarketId/';
   static final kiotGetall =  '/kiot/getAll';
+  static final kiotGetDetailById =  '/kiot/GetDetailByID/';
   static final regionGetByMarketId  =  '/region/getbymarketid/';
   static final kiotGetByRegionId  =  '/kiot/GetByRegionId/';
   static final productGroupGetByMarketId  =  '/ProductGroup/GetByMarketId/';
@@ -39,7 +40,7 @@ class AppConfig {
   static List<District> generalDistrictList (){
     List<District> _districtList = [];
     _districtList.add(District(id: 1, name: 'Quận Phú Nhuận', isSelected: true, url: "http://103.226.248.147:89/api/v1"));
-    _districtList.add(District(id: 2, name: 'Quận Bình Thạnh', isSelected: false,  url: "http://103.226.248.147:90/api/v1"));
+    _districtList.add(District(id: 2, name: 'Quận Bình Thạnh', isSelected: false,  url: "http://113.161.75.86:33335/api/v1"));
     return  _districtList;
   }
 

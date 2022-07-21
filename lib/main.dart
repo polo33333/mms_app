@@ -6,6 +6,7 @@ import 'modules/home_page.dart';
 import 'provider/contract_provider.dart';
 import 'provider/genneralInfo_provider.dart';
 import 'provider/householdBusiness_provider.dart';
+import 'provider/kiotDetail_provider.dart';
 import 'provider/marketDetail_provider.dart';
 import 'provider/productGroup_provider.dart';
 import 'provider/region_provider.dart';
@@ -46,6 +47,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => ProductGroupProvider()),
         ChangeNotifierProvider(create: (_) => Contract_2_Provider()),
         ChangeNotifierProvider(create: (_) => GenneralInfoProvider()),
+        ChangeNotifierProvider(create: (_) => KiotDetailProvider()),
 
       ],
       child: MyApp(),
